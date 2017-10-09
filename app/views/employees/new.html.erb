@@ -1,0 +1,61 @@
+<div class="center jumbotron">
+  <h1>Nuevo empleado</h1>
+
+  <%= form_for @employee, url: area_employees_path(@area) do |form| %>
+
+      <% if @employee.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger" role="alert">
+            <h2>
+              <%= pluralize(@employee.errors.count, "error") %>. El empleado no se pudo guardar.
+            </h2>
+            <ul>
+              <% @employee.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <p>
+        <%= label_tag('name', 'Nombre del empleado') %><br>
+        <%= form.text_field :name %>
+      </p>
+
+      <p>
+        <%= label_tag('username', 'Nombre de usuario') %><br>
+        <%= form.text_field :username %>
+      </p>
+
+      <p>
+        <%= label_tag('staff_id', 'Staff ID') %><br>
+        <%= form.text_field :staff_id %>
+      </p>
+
+      <p>
+        <%= label_tag('cell_phone', 'Número celular') %><br>
+        <%= form.text_field :cell_phone %>
+      </p>
+
+      <p>
+        <%= label_tag('extension', 'Extensión') %><br>
+        <%= form.text_field :extension %>
+      </p>
+
+      <p>
+        <%= label_tag('email', 'Correo electrónico') %><br>
+        <%= form.email_field :email %>
+      </p>
+
+      <p>
+        <%= label_tag('admin', 'Tipo de usuario') %><br>
+        <%= form.select :admin, [['Administrador', 1], ['Usuario', 0]], :selected => 0 %>
+      </p>
+
+      <p>
+        <%= button_tag "", type: 'submit', class: "btn btn-lg btn-primary glyphicon glyphicon-floppy-disk" %>
+      </p>
+
+  <% end %>
+
+  <%= link_to '<i class="glyphicon glyphicon-arrow-left"></i>'.html_safe, area_employees_path, class: "btn btn-lg btn-primary", "data-turbolinks" => "false" %>
+</div>

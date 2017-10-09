@@ -1,0 +1,31 @@
+
+<%= form_with model: @area, local: true do |form| %>
+
+    <% if @area.errors.any? %>
+        <div id="error_explanation" class="alert alert-danger" role="alert">
+          <h2>
+            <%= pluralize(@area.errors.count, "error") %>. El &aacute;rea no se pudo guardar.
+          </h2>
+          <ul>
+            <% @area.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= form.label :nombre %><br>
+      <%= form.text_field :name %>
+    </p>
+
+    <p>
+      <%= form.label :centro_de_costos %><br>
+      <%= form.text_field :cost_center %>
+    </p>
+
+    <p>
+      <%= button_tag "", type: 'submit', class: "btn btn-lg btn-primary glyphicon glyphicon-floppy-disk" %>
+    </p>
+
+<% end %>

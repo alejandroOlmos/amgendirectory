@@ -1,0 +1,30 @@
+<div class="center jumbotron">
+  <h1>Detalle</h1>
+
+  <% if @area.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger" role="alert">
+        <h2>
+          <%= pluralize(@area.errors.count, "error") %>. El &aacute;rea no se pudo guardar.
+        </h2>
+        <ul>
+          <% @area.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+  <%= flash_messages %>
+
+  <p>
+    <strong>Nombre:</strong>
+    <%= @area.name %>
+  </p>
+
+  <p>
+    <strong>Centro de Costos:</strong>
+    <%= @area.cost_center %>
+  </p>
+
+  <%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe, edit_area_path(@area), class: "btn btn-lg btn-warning" %>
+  <%= link_to '<i class="glyphicon glyphicon-arrow-left"></i>'.html_safe, areas_path, class: "btn btn-lg btn-primary", "data-turbolinks" => "false" %>
+</div>
